@@ -20,7 +20,7 @@ public class GenerateEntity {
 
     public Vacancy generateMinVacancy(){
         Vacancy vacancy = new Vacancy(generateRandomString("ABCD.....1234"), "QA Engineer",
-                "GiTHub", "JIRA", "Ukrainian", "Native",
+                "Java", "Scrum", "Ukrainian", "Native",
                 "Ukraine", "Remote", "1");
         return vacancy;
     }
