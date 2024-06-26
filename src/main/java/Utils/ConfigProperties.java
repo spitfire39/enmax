@@ -10,10 +10,6 @@ public class ConfigProperties {
     private static final Properties PROPERTIES;
     //    declare of variables for config file values
     public static final String BASE_URL;
-    public static final String API_URL;
-    public static final String PROJECTS_ACTIVE_TAB;
-    public static final String RECRUITER2_USERNAME;
-    public static final String RECRUITER2_PWD;
 
     //this class helps to get data from config file
     static {
@@ -26,10 +22,6 @@ public class ConfigProperties {
         }
 //        initialize of variables from config file
         BASE_URL = PROPERTIES.getProperty("url");
-        API_URL = PROPERTIES.getProperty("apiUrl");
-        PROJECTS_ACTIVE_TAB = PROPERTIES.getProperty("projectsActivePage");
-        RECRUITER2_USERNAME = PROPERTIES.getProperty("recruiterUsername");
-        RECRUITER2_PWD = PROPERTIES.getProperty("recruiterPwd");
     }
 
     public static String getProperty(String key) {

@@ -12,33 +12,9 @@ import org.openqa.selenium.support.PageFactory;
 
 public abstract class BasePage {
 
-    public void selectDropDownListValue(String field, String search, String list, String value){
-        $(By.xpath(field)).click();
-        $(By.xpath(search)).setValue(value);
-        $(By.xpath(String.format(list, value))).click();
-    }
-
-    public void selectDropDownListValue(String field, String list, String value){
-        $(By.xpath(field)).click();
-        $(By.xpath(String.format(list, value))).click();
-    }
-    public void multiSelectDropDownListValue(String field, String search, String list, String value){
-        $(By.xpath(field)).click();
-        $(By.xpath(search)).setValue(value);
-        $(By.xpath(String.format(list, value))).click();
-        $(By.xpath(field)).click();
-    }
-
     public void submitCaptcha(String iFrame, String locator){
         SelenideElement iFrameCaptcha = $(By.xpath(iFrame));
         switchTo().frame(iFrameCaptcha);
         $(By.xpath(locator)).click();
     }
-
-//    WebDriver driver;
-//
-//    public BasePage(WebDriver driver) {
-//        this.driver = driver;
-//        PageFactory.initElements(driver, this);
-//    }
 }

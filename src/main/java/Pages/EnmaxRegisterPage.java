@@ -2,6 +2,7 @@ package Pages;
 
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Selenide.$;
 
 public class EnmaxRegisterPage extends BasePage{
@@ -13,10 +14,10 @@ public class EnmaxRegisterPage extends BasePage{
 
     EnmaxRegisterStep2Page enmaxRegisterStep2Page = new EnmaxRegisterStep2Page();
 
-    public EnmaxRegisterPage fillRegisterFormStepOne(String email, String password){
+    public EnmaxRegisterPage fillRegisterFormStepOne(String email, String password, String confirmPassword){
         $(By.id(emailField)).sendKeys(email);
         $(By.id(passwordField)).sendKeys(password);
-        $(By.id(confirmPasswordField)).sendKeys(password);
+        $(By.id(confirmPasswordField)).sendKeys(confirmPassword);
         return this;
     }
 
@@ -29,5 +30,9 @@ public class EnmaxRegisterPage extends BasePage{
         return this;
     }
 
+    public EnmaxRegisterPage checkNextBtnIsDisabled(){
+        $(By.xpath(nextBtn)).shouldNotBe(enabled);
+        return this;
+    }
 
 }

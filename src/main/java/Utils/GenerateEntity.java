@@ -1,6 +1,6 @@
 package Utils;
 
-import Entities.Vacancy;
+import Entities.NewEmaxUser;
 import org.springframework.stereotype.Component;
 import java.util.Random;
 
@@ -18,10 +18,11 @@ public class GenerateEntity {
         return res.toString();
     }
 
-    public Vacancy generateMinVacancy(){
-        Vacancy vacancy = new Vacancy(generateRandomString("ABCD.....1234"), "QA Engineer",
-                "Java", "Scrum", "Ukrainian", "Native",
-                "Ukraine", "Remote", "1");
-        return vacancy;
+    public NewEmaxUser generateEnmaxUser(){
+        NewEmaxUser user = new NewEmaxUser(generateRandomString("ABCD1234")+"@domain.com",
+                generateRandomString("ABCDabcd..1234"),
+                "5555555555",
+                "19");
+        return user;
     }
 }

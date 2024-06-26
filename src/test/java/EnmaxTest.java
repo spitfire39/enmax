@@ -1,22 +1,35 @@
+import Entities.NewEmaxUser;
 import Pages.EnmaxHomePage;
 import Utils.ConfigProperties;
+import Utils.GenerateEntity;
 import org.testng.annotations.Test;
 
 public class EnmaxTest extends BaseTest {
 
     EnmaxHomePage enmaxHomePage = new EnmaxHomePage();
+    GenerateEntity generateEntity = new GenerateEntity();
 
     @Test
-    public void openHomePage() {
-        openPage(ConfigProperties.BASE_URL);
+    public void checkThatErrorMessageAppearForRegistrationFail() {
+        String errorMessage = "The site information is not valid, please make sure your phone number and the selected identifier are correct";
+        NewEmaxUser user = generateEntity.generateEnmaxUser();
+
         enmaxHomePage.openOutagesAndSafetyPage()
                 .clickSignInRegisterBtn()
                 .clickRegisterBtn()
-                .fillRegisterFormStepOne("test.email@a.com", "Bla_123!")
+                .fillRegisterFormStepOne(user.email, user.password, user.password)
                 .clickNextBtnSuccess()
-                .fillRegisterFormStepTwo("", "19")
+                .fillRegisterFormStepTwo(user.phone, user.houseNumber)
                 .clickCompleteRegistrationBtnFail()
-                .checkForErrorMessagePresence("The site information is not valid, please make sure your phone number and the selected identifier are correct");
-
+                .checkForErrorMessagePresence(errorMessage); // please note, since captcha is displayed images - test might fail
+    }
+    @Test
+    public void checkThatErrorMessageAppearForNotMatchingPasswords() {
+        NewEmaxUser user = generateEntity.generateEnmaxUser();
+        enmaxHomePage.openOutagesAndSafetyPage()
+                .clickSignInRegisterBtn()
+                .clickRegisterBtn()
+                .fillRegisterFormStepOne(user.email, user.password, user.password+"1")
+                .checkNextBtnIsDisabled();
     }
 }
